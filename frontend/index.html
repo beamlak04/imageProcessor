@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Image Processor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>Pro Image Processor</h1>
+            <p>Optimize, resize, and convert your images instantly.</p>
+        </header>
+
+        <section class="processor-card">
+            <form id="image-form">
+                <!-- Dropzone for File -->
+                <div class="form-group dropzone" id="dropzone">
+                    <input type="file" id="image-upload" name="image" accept="image/*" required>
+                    <div class="drop-content">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        <p>Click to browse or drag image here</p>
+                        <span id="file-name" class="file-name"></span>
+                    </div>
+                </div>
+
+                <!-- Parameters Grid -->
+                <div class="parameters-grid">
+                    <div class="form-group">
+                        <label for="width">Target Width (px)</label>
+                        <input type="number" id="width" name="width" placeholder="e.g. 800 (Optional)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="format">Output Format</label>
+                        <select id="format" name="format">
+                            <option value="webp" selected>WebP (Highly Compressed)</option>
+                            <option value="jpeg">JPEG (Standard)</option>
+                            <option value="png">PNG (Lossless)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quality">Quality (1-100)</label>
+                        <input type="range" id="quality" name="quality" min="1" max="100" value="80">
+                        <span id="quality-value" class="range-value">80</span>
+                    </div>
+
+                    <!-- New Background Removal Toggle -->
+                    <div class="form-group toggle-group">
+                        <label for="removeBg">Remove Background (AI)</label>
+                        <label class="switch">
+                            <input type="checkbox" id="removeBg" name="removeBg" value="true">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-action">
+                    <button type="submit" id="submit-btn">
+                        <span class="btn-text">Process Image</span>
+                        <div class="spinner" id="spinner"></div>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Result Section -->
+        <section id="result-section" class="result-card hidden">
+            <h2>Processing Result</h2>
+            
+            <div class="stats-container">
+                <div class="stat-box">
+                    <span class="stat-label">Original Size</span>
+                    <span class="stat-value" id="original-size">-</span>
+                </div>
+                <div class="stat-box highlight">
+                    <span class="stat-label">Processed Size</span>
+                    <span class="stat-value" id="processed-size">-</span>
+                </div>
+                <div class="stat-box savings">
+                    <span class="stat-label">Space Saved</span>
+                    <span class="stat-value" id="space-saved">-</span>
+                </div>
+            </div>
+
+            <div class="preview-container">
+                <img id="result-preview" src="" alt="Processed Image Preview">
+            </div>
+
+            <div class="action-container">
+                <button id="download-btn" class="btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Download Image
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
